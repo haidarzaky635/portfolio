@@ -1253,6 +1253,12 @@
     </footer>
 
     <script>
+        // Mencegah browser mengembalikan posisi scroll sebelumnya saat direload
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
         window.addEventListener('load', function () {
             // Memberikan waktu agar animasi teks selesai sebelum tirai terbuka
             setTimeout(function () {
