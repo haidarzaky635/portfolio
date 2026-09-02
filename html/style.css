@@ -1,0 +1,15 @@
+body {
+    background-color: rgb(138, 101, 101);
+}   
+h1 {
+    color: aqua;
+}
+h2 {
+    color: blue;
+}
+h3 {
+    color: green;
+}
+p {
+    color: rgb(0, 0, 0);
+}

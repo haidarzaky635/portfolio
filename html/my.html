@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Halaman perkenalan diri interaktif dan modern milik Haidar Zaky. Pelajari tentang hobi, biodata, dan galeri kucing kesayangan.">
+    <title>Haidar Zaky</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="hs-removebg-preview.png" type="image/x-icon">
+    <style>
+        /* CSS RESET & VARIABLES */
+        :root[data-theme="dark"] {
+            --bg-primary: #08090d;
+            --bg-secondary: rgba(17, 18, 27, 0.8);
+            --bg-glow: rgba(139, 92, 246, 0.12);
+            --bg-glow-2: rgba(59, 130, 246, 0.1);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-color: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.3);
+            --accent-hover: #a78bfa;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-hover: rgba(255, 255, 255, 0.06);
+            --glass-blur: 16px;
+            --shadow-primary: rgba(0, 0, 0, 0.4);
+            --table-header: rgba(139, 92, 246, 0.15);
+        }
+
+        :root[data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: rgba(255, 255, 255, 0.85);
+            --bg-glow: rgba(99, 102, 241, 0.08);
+            --bg-glow-2: rgba(14, 165, 233, 0.06);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.2);
+            --accent-hover: #4f46e5;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --card-bg: rgba(0, 0, 0, 0.02);
+            --card-hover: rgba(0, 0, 0, 0.04);
+            --glass-blur: 16px;
+            --shadow-primary: rgba(15, 23, 42, 0.08);
+            --table-header: rgba(99, 102, 241, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 2rem 1rem;
+        }
+
+        /* BACKGROUND GLOW BLOBS */
+        .glow-blob-1 {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--bg-glow) 0%, transparent 70%);
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .glow-blob-2 {
+            position: fixed;
+            bottom: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--bg-glow-2) 0%, transparent 70%);
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        /* MAIN GLASS CARD */
+        .main-container {
+            width: 100%;
+            max-width: 950px;
+            background: var(--bg-secondary);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px var(--shadow-primary);
+            padding: 2.5rem;
+            z-index: 1;
+            overflow: hidden;
+            animation: containerAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes containerAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* HEADER SECTION */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .profile-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar-initial {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), #3b82f6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--accent-glow);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .brand-text h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-text p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* CONTROLS (THEME TOGGLE) */
+        .controls {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-theme {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-theme:hover {
+            background: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .btn-theme svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* TAB NAVIGATION */
+        .tab-navigation {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--card-bg);
+            padding: 0.375rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .tab-navigation::-webkit-scrollbar {
+            display: none; /* Safari & Chrome */
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-secondary);
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background: var(--card-hover);
+        }
+
+        .tab-btn.active {
+            color: #ffffff;
+            background: var(--accent-color);
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .tab-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* TAB CONTENT SECTIONS */
+        .tab-content {
+            display: none;
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ABOUT SECTION */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .badge {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge-accent {
+            background: var(--accent-glow);
+            border-color: var(--accent-color);
+            color: var(--text-primary);
+        }
+
+        .about-text {
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .about-text h3 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .about-highlight {
+            font-weight: 600;
+            color: var(--accent-color);
+            background: var(--accent-glow);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        /* HOBBIES SECTION */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .hobby-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hobby-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), #3b82f6);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-8px);
+            background: var(--card-hover);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 20px var(--shadow-primary);
+        }
+
+        .hobby-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .hobby-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 12px;
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1.25rem;
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .hobby-card:hover .hobby-icon {
+            background: var(--accent-color);
+            color: #ffffff;
+            box-shadow: 0 4px 10px var(--accent-glow);
+        }
+
+        .hobby-icon svg {
+            width: 26px;
+            height: 26px;
+            fill: currentColor;
+        }
+
+        .hobby-card h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .hobby-card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .hobby-tracker {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            background: var(--accent-glow);
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* BIODATA SECTION */
+        .biodata-container {
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px var(--shadow-primary);
+        }
+
+        .bio-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .bio-table th, .bio-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .bio-table th {
+            background-color: var(--table-header);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--text-primary);
+            width: 30%;
+        }
+
+        .bio-table td {
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .bio-table tr:last-child th, .bio-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .bio-table td mark {
+            background-color: var(--accent-glow);
+            color: var(--accent-color);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* CAT GALLERY SECTION */
+        .cat-showcase {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .cat-showcase {
+                grid-template-columns: 1.2fr 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1.2fr 1.8fr;
+            }
+        }
+
+        .cat-polaroid {
+            background: #ffffff;
+            padding: 1.25rem;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+            border-radius: 4px;
+            transform: rotate(-3deg);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 350px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .cat-polaroid:hover {
+            transform: rotate(1deg) scale(1.05);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.35);
+        }
+
+        .cat-frame {
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .cat-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .cat-polaroid:hover .cat-frame img {
+            transform: scale(1.08);
+        }
+
+        .cat-caption {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: #1e293b;
+            text-align: center;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .cat-caption span {
+            display: block;
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+
+        .cat-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .cat-info h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .cat-info p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .btn-pet {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #3b82f6 100%);
+            color: #ffffff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--accent-glow);
+            align-self: flex-start;
+        }
+
+        .btn-pet:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--accent-glow);
+        }
+
+        .btn-pet:active {
+            transform: translateY(0);
+        }
+
+        .btn-pet svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .meow-counter {
+            font-weight: 700;
+            color: var(--accent-color);
+            background: var(--accent-glow);
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* GUESTBOOK SECTION */
+        .guestbook-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .guestbook-container {
+                grid-template-columns: 1fr 1.2fr;
+            }
+        }
+
+        .guestbook-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.5rem;
+        }
+
+        .guestbook-form h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .input-group input, .input-group textarea {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            outline: none;
+            width: 100%;
+            transition: all 0.25s ease;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .btn-submit {
+            background: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px var(--accent-glow);
+        }
+
+        .btn-submit:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .guestbook-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .guestbook-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .guestbook-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .guestbook-list::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 10px;
+        }
+
+        .guestbook-list::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
+        .msg-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
+            border-radius: 14px;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .msg-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .msg-name {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .msg-date {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .msg-text {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .guestbook-empty {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 2rem 0;
+            opacity: 0.7;
+        }
+
+        .guestbook-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-clear {
+            background: transparent;
+            border: 1px dashed var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-clear:hover {
+            color: #ef4444;
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            width: 100%;
+            max-width: 950px;
+            z-index: 1;
+            padding: 1rem 0;
+        }
+
+        footer p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Glow Background Elements -->
+    <div class="glow-blob-1"></div>
+    <div class="glow-blob-2"></div>
+
+    <div class="main-container">
+        <!-- HEADER -->
+        <header>
+            <div class="profile-brand">
+                <div class="avatar-initial">HZ</div>
+                <div class="brand-text">
+                    <h1>Haidar Zaky</h1>
+                    <p>Student • Developer • Creator</p>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="btn-theme" id="theme-toggle" title="Ubah Tema" aria-label="Ubah Tema">
+                    <!-- Sun Icon (Default hidden on Dark Mode) -->
+                    <svg id="theme-sun" style="display:none;" viewBox="0 0 24 24">
+                        <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.01c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+                    </svg>
+                    <!-- Moon Icon (Default visible on Dark Mode) -->
+                    <svg id="theme-moon" viewBox="0 0 24 24">
+                        <path d="M12.3 22h-.1c-5.5 0-10-4.5-10-10C2.2 6.8 6.4 2.5 11.8 2c.5 0 .8.3.8.8v.2c-.3.7-.4 1.4-.4 2.2 0 4.4 3.6 8 8 8 .8 0 1.5-.1 2.2-.4.2 0 .4.1.5.3.2.2.2.5.1.7-1.4 4.8-5.8 8.2-10.7 8.2zm-6.1-10c0 3.3 2.7 6 6 6 2.8 0 5.2-2 5.8-4.7-.6.2-1.3.3-2 .3-5.5 0-10-4.5-10-10 0-.7.1-1.4.3-2C7.7 2.3 6.2 4.7 6.2 12z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- NAVIGATION TABS -->
+        <nav class="tab-navigation">
+            <button class="tab-btn active" data-tab="about">
+                <!-- User Icon -->
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                Tentang Saya
+            </button>
+            <button class="tab-btn" data-tab="hobbies">
+                <!-- Hobby Icon -->
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+                Hobi
+            </button>
+            <button class="tab-btn" data-tab="biodata">
+                <!-- Info Icon -->
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                Biodata
+            </button>
+            <button class="tab-btn" data-tab="cat">
+                <!-- Cat Icon -->
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" style="display:none;"/><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.17 19.59 10.53 20 12 20c4.97 0 9-4.03 9-9 0-4.97-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm-2.5-7c-.83 0-1.5-.67-1.5-1.5S8.67 8 9.5 8s1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 8 14.5 8s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                Kucing
+            </button>
+            <button class="tab-btn" data-tab="guestbook">
+                <!-- Message Icon -->
+                <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+                Buku Tamu
+            </button>
+        </nav>
+
+        <!-- SECTION: ABOUT -->
+        <section class="tab-content active" id="about-section">
+            <div class="about-grid">
+                <div class="hero-banner">
+                    <div class="avatar-initial" style="width:100px; height:100px; font-size: 2.2rem; margin: 0 auto 1rem;">HZ</div>
+                    <h2 style="font-family:'Outfit'; font-weight:800; font-size:1.8rem; margin-bottom: 0.25rem;">Haidar Zaky</h2>
+                    <p style="color:var(--accent-color); font-weight:700; font-size:0.9rem; margin-bottom:1rem;">Pelajar & Pengembang</p>
+                    <div class="badge-container">
+                        <span class="badge badge-accent">🧑‍🎓 Pelajar</span>
+                        <span class="badge">💻 Coder</span>
+                        <span class="badge">🕌 Muslim</span>
+                        <span class="badge">🌍 Human</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Halo semuanya! 👋</h3>
+                    <p>Perkenalkan, nama saya <span class="about-highlight">Haidar Zaky</span>. Saya adalah seorang pelajar dari <span style="color: var(--text-primary); font-weight: 600;">Indonesia</span> yang sangat menyukai dunia teknologi dan pemrograman komputer.</p>
+                    <p>Bagi saya, ngoding dan mempelajari teknologi web bukan sekadar tugas sekolah, melainkan sebuah hobi yang menyenangkan dan menantang kreativitas.</p>
+                    <p>Belajar HTML itu sangat <mark style="background:var(--accent-glow); color:var(--accent-color); padding:0 4px; border-radius:4px; font-weight:600;">menyenangkan</mark> dan sangat mudah sekali, apalagi kalau kita belajar bersama teman-teman sambil ngoding santai bareng.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: HOBBIES -->
+        <section class="tab-content" id="hobbies-section">
+            <div style="margin-bottom: 1.5rem;">
+                <h2 style="font-family:'Outfit'; font-weight:700; margin-bottom: 0.5rem;">Hobi & Aktivitas</h2>
+                <p style="color:var(--text-secondary); font-size:0.9rem;">Berikut adalah beberapa aktivitas favorit saya. Klik kartu untuk menambah counter aktivitas!</p>
+            </div>
+            
+            <div class="hobbies-grid">
+                <!-- Hobi 1 -->
+                <div class="hobby-card" onclick="incrementHobby('makan')">
+                    <div class="hobby-icon">
+                        <!-- Food Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm8-3h-3V2h-2v12h3v8h2v-8h1c1.1 0 2-.9 2-2V9c0-1.66-1.34-3-3-3z"/></svg>
+                    </div>
+                    <h4>Makan</h4>
+                    <p>Menjelajahi kuliner lezat untuk mengisi energi setelah seharian belajar.</p>
+                    <div class="hobby-tracker">Porsi: <span id="hobby-makan-count">0</span></div>
+                </div>
+
+                <!-- Hobi 2 -->
+                <div class="hobby-card" onclick="incrementHobby('tidur')">
+                    <div class="hobby-icon">
+                        <!-- Sleep Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M20 9.5c0-.8-.7-1.5-1.5-1.5H12v2h5v5h2v-4c.6 0 1-.4 1-1.5zm-11 3c0-.8-.7-1.5-1.5-1.5H3v6.5c0 .8.7 1.5 1.5 1.5H9c.8 0 1.5-.7 1.5-1.5V12.5zM2 20h20v-2H2v2zM12 4c-4.42 0-8 3.58-8 8h3c0-2.76 2.24-5 5-5s5 2.24 5 5h3c0-4.42-3.58-8-8-8z"/></svg>
+                    </div>
+                    <h4>Tidur</h4>
+                    <p>Istirahat yang cukup sangat penting untuk menjaga kesehatan pikiran.</p>
+                    <div class="hobby-tracker">Mimpi: <span id="hobby-tidur-count">0</span></div>
+                </div>
+
+                <!-- Hobi 3 -->
+                <div class="hobby-card" onclick="incrementHobby('mandi')">
+                    <div class="hobby-icon">
+                        <!-- Bath Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.06-.86.99.37 2.11-.14 2.51-1.12.51 1.25 1.95 1.83 3.16 1.27.53 1.22 1.95 1.76 3.12 1.18.57 1.19 1.97 1.66 3.1 1.05.04.16.05.32.05.48 0 4.41-3.59 8-8 8z"/></svg>
+                    </div>
+                    <h4>Mandi</h4>
+                    <p>Menyegarkan tubuh dan pikiran agar selalu siap fokus kembali.</p>
+                    <div class="hobby-tracker">Segar: <span id="hobby-mandi-count">0</span>x</div>
+                </div>
+
+                <!-- Hobi 4 -->
+                <div class="hobby-card" onclick="incrementHobby('belajar')">
+                    <div class="hobby-icon">
+                        <!-- Book Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5.47 12.18L12 15.74l6.53-3.56-6.53-3.56zM12 21.26l-6.53-3.56v-2.18L12 19.1l6.53-3.58v2.18L12 21.26z"/></svg>
+                    </div>
+                    <h4>Belajar</h4>
+                    <p>Membaca, menulis kode, dan mengeksplorasi ilmu baru setiap hari.</p>
+                    <div class="hobby-tracker">Level: <span id="hobby-belajar-count">0</span></div>
+                </div>
+
+                <!-- Hobi 5 -->
+                <div class="hobby-card" onclick="incrementHobby('main')">
+                    <div class="hobby-icon">
+                        <!-- Game Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M21.58 7.19c-.37-.78-1.11-1.24-1.96-1.24H4.38c-.85 0-1.59.46-1.96 1.24L1 11.5v7c0 .83.67 1.5 1.5 1.5h1.5c.83 0 1.5-.67 1.5-1.5v-1h13v1c0 .83.67 1.5 1.5 1.5h1.5c.83 0 1.5-.67 1.5-1.5v-7l-1.42-4.31zM6.25 15c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm11.5 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zM12 10.5c-.83 0-1.5-.67-1.5-1.5S11.17 7.5 12 7.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                    </div>
+                    <h4>Main Game</h4>
+                    <p>Mencari kesenangan dan mengasah reflex lewat permainan interaktif.</p>
+                    <div class="hobby-tracker">Skor: <span id="hobby-main-count">0</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: BIODATA -->
+        <section class="tab-content" id="biodata-section">
+            <div style="margin-bottom: 1.5rem;">
+                <h2 style="font-family:'Outfit'; font-weight:700; margin-bottom: 0.5rem;">Biodata Resmi</h2>
+                <p style="color:var(--text-secondary); font-size:0.9rem;">Informasi pribadi terperinci mengenai profile saya.</p>
+            </div>
+            
+            <div class="biodata-container">
+                <table class="bio-table">
+                    <tr>
+                        <th>Nama Lengkap</th>
+                        <td>Haidar Zaky</td>
+                    </tr>
+                    <tr>
+                        <th>Pendidikan</th>
+                        <td>Pelajar (Student)</td>
+                    </tr>
+                    <tr>
+                        <th>Asal Negara</th>
+                        <td><mark>Indonesia 🇮🇩</mark></td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal Lahir</th>
+                        <td>02 Desember 2009 (02.12.09)</td>
+                    </tr>
+                    <tr>
+                        <th>Spesialisasi</th>
+                        <td>Front-End HTML & CSS</td>
+                    </tr>
+                    <tr>
+                        <th>Keyakinan</th>
+                        <td>Muslim (Islam)</td>
+                    </tr>
+                    <tr>
+                        <th>Spesies</th>
+                        <td>Manusia (Human) 🌍</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION: CAT -->
+        <section class="tab-content" id="cat-section">
+            <div class="cat-showcase">
+                <div>
+                    <div class="cat-polaroid" onclick="meowEffects()">
+                        <div class="cat-frame">
+                            <img src="cattttt.jpg" alt="Kucing Kesayangan Haidar" id="cat-img">
+                        </div>
+                        <div class="cat-caption">
+                            Si Meong
+                            <span>Asisten Coding Terbaik Haidar</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cat-info">
+                    <h3>Meet My Assistant! 🐾</h3>
+                    <p>Ini adalah kucing kesayangan saya yang selalu menemani di kala saya sedang asyik menulis kode HTML dan CSS larut malam.</p>
+                    <p>Dia bertindak sebagai <em>quality assurance</em> yang akan mengeong keras jika ada sintaks tag HTML yang lupa ditutup.</p>
+                    
+                    <button class="btn-pet" id="pet-button" onclick="petTheCat()">
+                        <!-- Paw Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M12 14c-1.66 0-3 1.34-3 3 0 2 2 3.5 3 4.5 1-1 3-2.5 3-4.5 0-1.66-1.34-3-3-3zm-5.5-2c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm11 0c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM12 2C8.69 2 6 4.69 6 8c0 1.76.75 3.33 1.95 4.45L12 16.5l4.05-4.05C17.25 11.33 18 9.76 18 8c0-3.31-2.69-6-6-6z"/></svg>
+                        Elus Kucing 
+                        <span class="meow-counter" id="meow-count">0 Elusan</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: GUESTBOOK -->
+        <section class="tab-content" id="guestbook-section">
+            <div style="margin-bottom: 1.5rem;">
+                <h2 style="font-family:'Outfit'; font-weight:700; margin-bottom: 0.5rem;">Buku Tamu Interaktif</h2>
+                <p style="color:var(--text-secondary); font-size:0.9rem;">Tinggalkan pesan kesan Anda untuk halaman web ini!</p>
+            </div>
+            
+            <div class="guestbook-container">
+                <div>
+                    <form class="guestbook-form" id="guestbook-form" onsubmit="handleGuestbookSubmit(event)">
+                        <h3>Tulis Pesan</h3>
+                        <div class="input-group">
+                            <label for="input-name">Nama Anda</label>
+                            <input type="text" id="input-name" placeholder="Masukkan nama Anda..." required maxlength="30">
+                        </div>
+                        <div class="input-group">
+                            <label for="input-msg">Pesan</label>
+                            <textarea id="input-msg" rows="4" placeholder="Tuliskan pesan atau saran Anda di sini..." required maxlength="200"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Kirim Pesan</button>
+                    </form>
+                </div>
+                <div>
+                    <div class="guestbook-actions" style="margin-bottom: 1rem;">
+                        <h4 style="font-family:'Outfit'; font-weight:700;">Daftar Pesan</h4>
+                        <button class="btn-clear" onclick="clearGuestbook()">Hapus Semua</button>
+                    </div>
+                    <div class="guestbook-list" id="guestbook-list">
+                        <!-- Pesan akan terisi secara dinamis di sini -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Haidar Zaky. Dibuat dengan 💜 menggunakan HTML5 & CSS3. Kunjungi <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Channel YouTube</a> saya.</p>
+    </footer>
+
+    <!-- JAVASCRIPT FOR INTERACTVITY -->
+    <script>
+        // 1. THEME TOGGLER (DARK/LIGHT MODE)
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('theme-sun');
+        const moonIcon = document.getElementById('theme-moon');
+
+        // Check local storage or system preference
+        const savedTheme = localStorage.getItem('theme') || 
+            (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        
+        setTheme(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if (theme === 'light') {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            }
+        }
+
+        // 2. TAB SWITCHER
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+
+                // Update active button
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update active content
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${targetTab}-section`) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // 3. HOBBY TRACKER
+        const hobbies = ['makan', 'tidur', 'mandi', 'belajar', 'main'];
+        hobbies.forEach(hobby => {
+            const storedVal = localStorage.getItem(`hobby-${hobby}`) || 0;
+            document.getElementById(`hobby-${hobby}-count`).textContent = storedVal;
+        });
+
+        function incrementHobby(hobby) {
+            let currentVal = parseInt(localStorage.getItem(`hobby-${hobby}`) || 0);
+            currentVal += 1;
+            localStorage.setItem(`hobby-${hobby}`, currentVal);
+            document.getElementById(`hobby-${hobby}-count`).textContent = currentVal;
+            
+            // Add a temporary pop scaling animation to the count element
+            const element = document.getElementById(`hobby-${hobby}-count`);
+            element.style.transform = 'scale(1.3)';
+            element.style.display = 'inline-block';
+            element.style.transition = 'transform 0.1s ease';
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        // 4. PET THE CAT INTERACTION
+        let petCount = parseInt(localStorage.getItem('pet-count') || 0);
+        document.getElementById('meow-count').textContent = `${petCount} Elusan`;
+
+        function petTheCat() {
+            petCount += 1;
+            localStorage.setItem('pet-count', petCount);
+            document.getElementById('meow-count').textContent = `${petCount} Elusan`;
+            
+            // Play meow-effect animation on cat photo
+            meowEffects();
+        }
+
+        function meowEffects() {
+            const catImg = document.getElementById('cat-img');
+            
+            // Add rotation/shake to cat image
+            catImg.style.transform = 'scale(1.05) rotate(2deg)';
+            catImg.style.transition = 'transform 0.15s ease';
+            
+            setTimeout(() => {
+                catImg.style.transform = 'scale(1) rotate(0deg)';
+            }, 150);
+        }
+
+        // 5. GUESTBOOK FUNCTIONALITY
+        let guestbookData = JSON.parse(localStorage.getItem('guestbook') || '[]');
+
+        function displayGuestbook() {
+            const listContainer = document.getElementById('guestbook-list');
+            listContainer.innerHTML = '';
+
+            if (guestbookData.length === 0) {
+                listContainer.innerHTML = `<div class="guestbook-empty">Belum ada pesan. Jadilah yang pertama meninggalkan kesan!</div>`;
+                return;
+            }
+
+            // Render from newest to oldest
+            [...guestbookData].reverse().forEach(data => {
+                const card = document.createElement('div');
+                card.className = 'msg-card';
+                card.innerHTML = `
+                    <div class="msg-header">
+                        <div class="msg-name">${escapeHTML(data.name)}</div>
+                        <div class="msg-date">${data.date}</div>
+                    </div>
+                    <div class="msg-text">${escapeHTML(data.message)}</div>
+                `;
+                listContainer.appendChild(card);
+            });
+        }
+
+        function handleGuestbookSubmit(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('input-name');
+            const msgInput = document.getElementById('input-msg');
+
+            const newEntry = {
+                name: nameInput.value.trim(),
+                message: msgInput.value.trim(),
+                date: new Date().toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
+            };
+
+            guestbookData.push(newEntry);
+            localStorage.setItem('guestbook', JSON.stringify(guestbookData));
+            displayGuestbook();
+
+            // Clear inputs
+            nameInput.value = '';
+            msgInput.value = '';
+
+            // Focus success animation
+            const form = document.getElementById('guestbook-form');
+            form.style.borderColor = 'var(--accent-color)';
+            setTimeout(() => {
+                form.style.borderColor = 'var(--border-color)';
+            }, 1000);
+        }
+
+        function clearGuestbook() {
+            if (confirm('Apakah Anda yakin ingin menghapus semua pesan di buku tamu?')) {
+                guestbookData = [];
+                localStorage.removeItem('guestbook');
+                displayGuestbook();
+            }
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+
+        // Initialize display
+        displayGuestbook();
+    </script>
+</body>
+
+</html>
